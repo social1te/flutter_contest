@@ -19,7 +19,7 @@ class CustomChip extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 45),
-          child: Text(title),
+          child: Center(child: Text(title)),
         ),
       ),
     );

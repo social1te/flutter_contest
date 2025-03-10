@@ -22,12 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.cultured,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('Главная'),
         centerTitle: true,
         backgroundColor: AppColors.cultured,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: ()=> Navigator.of(context).pushNamed('/settings'),
             icon: Icon(Icons.filter_list_sharp),
           ),
         ],
@@ -60,20 +61,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(fontSize: 16),
                   ),
                   Spacer(),
-                  Text(
-                    'Все',
-                    style: TextStyle(color: AppColors.pictonBlue),
+                  TextButton(
+                    onPressed: (){},
+                    child: Text('Все',
+                      style: TextStyle(color: AppColors.pictonBlue),)
                   ),
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(55),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(
-                  16,
-                ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Image.asset(
+                'images/summer_sale.png',
+                fit: BoxFit.cover,
               ),
             ),
             Padding(
@@ -112,12 +112,28 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CustomChip(title: 'Размер обуви'),
-                CustomChip(title: 'Цвет'),
+                Expanded(child: CustomChip(title: 'Размер обуви')),
+                Expanded(child: CustomChip(title: 'Цвет')),
               ],
             ),
             SizedBox(height: 12),
-            ItemGrid()
+            FutureBuilder(
+              future: Future.delayed(Duration(seconds: 2),),
+              builder: (context, snapshot) {
+                return GridView.builder(
+                    itemCount: 12,
+                    primary: false,
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ItemGrid(),
+                      );
+                    });
+              },
+            )
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled3/src/config/styles/colors.dart';
+import 'package:untitled3/src/features/favorites/favorites_list_screen.dart';
 import 'package:untitled3/src/features/home/home_screen.dart';
 
 class MainWrapper extends StatefulWidget {
@@ -22,9 +23,7 @@ class _MainWrapperState extends State<MainWrapper> {
     Placeholder(
       color: Colors.red,
     ),
-    Placeholder(
-      color: Colors.blue,
-    ),
+    FavoritesListScreen(),
     HomeScreen(),
     Placeholder(
       color: Colors.yellow,
