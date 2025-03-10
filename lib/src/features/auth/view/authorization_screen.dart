@@ -84,7 +84,7 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: ()=> Navigator.of(context).pushNamed('/main'),
+                    onPressed: ()=> Navigator.of(context).pushNamed('/onboarding'),
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       foregroundColor: Colors.white,
