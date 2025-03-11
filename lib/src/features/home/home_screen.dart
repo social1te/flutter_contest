@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled3/src/config/styles/colors.dart';
+import 'package:untitled3/src/data/products/remote/models/products_response.dart';
+import 'package:untitled3/src/data/products/remote/products_data_source.dart';
 import 'package:untitled3/src/features/home/widgets/choice_chip.dart';
 import 'package:untitled3/src/features/home/widgets/item_grid.dart';
 
@@ -10,15 +13,16 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+final _dio = Dio();
+
 class _HomeScreenState extends State<HomeScreen> {
+  final productsDataSource = ProductsDataSource(_dio);
+
+  final apiKey =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp5bHZydXVjdGVnZ2R5b2ZkZWNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEwOTE4MTMsImV4cCI6MjA1NjY2NzgxM30.3i46P07LaqKd9mF0suHfwunWZl8HindgZ3hdzU6WDzE';
+
   @override
   Widget build(BuildContext context) {
-    final String sizeValue = 'Размер';
-    List sizes = [
-      '33',
-      '34',
-      '35',
-    ];
     return Scaffold(
       backgroundColor: AppColors.cultured,
       appBar: AppBar(
@@ -28,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: AppColors.cultured,
         actions: [
           IconButton(
-            onPressed: ()=> Navigator.of(context).pushNamed('/settings'),
+            onPressed: () => Navigator.of(context).pushNamed('/settings'),
             icon: Icon(Icons.filter_list_sharp),
           ),
         ],
@@ -62,9 +66,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Spacer(),
                   TextButton(
-                    onPressed: (){},
-                    child: Text('Все',
-                      style: TextStyle(color: AppColors.pictonBlue),)
+                    onPressed: () {},
+                    child: Text(
+                      'Все',
+                      style: TextStyle(color: AppColors.pictonBlue),
+                    ),
                   ),
                 ],
               ),
@@ -117,21 +123,32 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             SizedBox(height: 12),
-            FutureBuilder(
-              future: Future.delayed(Duration(seconds: 2),),
+            FutureBuilder<List<ProductResponse>>(
+              future: productsDataSource.getProducts(apiKey: apiKey),
               builder: (context, snapshot) {
-                return GridView.builder(
-                    itemCount: 12,
-                    primary: false,
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ItemGrid(),
-                      );
-                    });
+                if (snapshot.error != null || snapshot.stackTrace != null) {
+                  print(snapshot.error);
+                  return Text('${snapshot.error}');
+                }
+                if (snapshot.hasData ||
+                    snapshot.connectionState == ConnectionState.done) {
+                  return GridView.builder(
+                      itemCount: snapshot.data!.length,
+                      primary: false,
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2),
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ItemGrid(
+                            name: snapshot.data![index].name,
+                            price: snapshot.data![index].price.toInt(),
+                          ),
+                        );
+                      });
+                }
+                return CircularProgressIndicator();
               },
             )
           ],

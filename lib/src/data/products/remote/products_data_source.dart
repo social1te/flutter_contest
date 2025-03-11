@@ -4,12 +4,13 @@ import 'package:untitled3/src/data/products/remote/models/products_response.dart
 
 part 'products_data_source.g.dart';
 
-@RestApi()
+@RestApi(baseUrl: 'https://zylvruucteggdyofdecm.supabase.co')
 abstract class ProductsDataSource{
-  factory ProductsDataSource(Dio dio, String baseUrl) => _ProductsDataSource;
+  factory ProductsDataSource(Dio dio) = _ProductsDataSource;
 
-  @GET('https://zylvruucteggdyofdecm.supabase.co/rest/v1/products/')
-  Future<ProductResponse> getProducts({
-    @Query('products') required String query
+  @GET('/rest/v1/products/')
+  Future <List<ProductResponse>> getProducts({
+    @Header('apiKey') required String apiKey
 });
+
 }

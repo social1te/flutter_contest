@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled3/src/config/styles/colors.dart';
+import 'package:untitled3/src/features/cart/cart_screen.dart';
 import 'package:untitled3/src/features/favorites/favorites_list_screen.dart';
 import 'package:untitled3/src/features/home/home_screen.dart';
 
@@ -11,7 +12,7 @@ class MainWrapper extends StatefulWidget {
 }
 
 class _MainWrapperState extends State<MainWrapper> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 0;
 
   void _onTap(int index) {
     setState(() {
@@ -20,11 +21,9 @@ class _MainWrapperState extends State<MainWrapper> {
   }
 
   final List _screens = [
-    Placeholder(
-      color: Colors.red,
-    ),
-    FavoritesListScreen(),
     HomeScreen(),
+    FavoritesListScreen(),
+    CartScreen(),
     Placeholder(
       color: Colors.yellow,
     ),
