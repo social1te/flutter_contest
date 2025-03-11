@@ -63,7 +63,7 @@ class CartScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: (){},
+                    onPressed: ()=>Navigator.of(context).pushNamed('/purchasing'),
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
                       foregroundColor: Colors.white,
@@ -74,7 +74,7 @@ class CartScreen extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(14),
-                      child: Text('Добавить в корзину'),
+                      child: Text('Оформить заказ'),
                     ),
                   ),
                 ),

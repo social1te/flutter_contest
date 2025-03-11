@@ -25,6 +25,7 @@ class InputWidget extends StatelessWidget {
         Text(label ?? ''),
         SizedBox(height: 12),
         TextField(
+
           controller: controller,
           obscureText: obscureText,
           decoration: InputDecoration(
