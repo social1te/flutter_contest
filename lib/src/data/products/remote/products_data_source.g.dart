@@ -9,7 +9,9 @@ part of 'products_data_source.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _ProductsDataSource implements ProductsDataSource {
-  _ProductsDataSource(this._dio, {this.baseUrl, this.errorLogger});
+  _ProductsDataSource(this._dio, {this.baseUrl, this.errorLogger}) {
+    baseUrl ??= 'https://zylvruucteggdyofdecm.supabase.co';
+  }
 
   final Dio _dio;
 
@@ -18,25 +20,30 @@ class _ProductsDataSource implements ProductsDataSource {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<ProductResponse> getProducts({required String query}) async {
+  Future<List<ProductResponse>> getProducts({required String apiKey}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'products': query};
-    final _headers = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'apiKey': apiKey};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<ProductResponse>(
+    final _options = _setStreamType<List<ProductResponse>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'https://zylvruucteggdyofdecm.supabase.co/rest/v1/products/',
+            '/rest/v1/products/',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late ProductResponse _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<ProductResponse> _value;
     try {
-      _value = ProductResponse.fromJson(_result.data!);
+      _value = _result.data!
+          .map(
+            (dynamic i) => ProductResponse.fromJson(i as Map<String, dynamic>),
+          )
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

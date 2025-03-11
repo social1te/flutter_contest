@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:untitled3/src/config/styles/colors.dart';
 
 class ItemGrid extends StatelessWidget {
-  const ItemGrid({super.key});
+  const ItemGrid({
+    super.key,
+    required this.name,
+    required this.price,
+  });
+
+  final String name;
+  final int price;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +63,7 @@ class ItemGrid extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'Nike Air Max',
+                  name,
                   style: TextStyle(color: AppColors.dimGray),
                 ),
               ],
@@ -68,7 +75,7 @@ class ItemGrid extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text('1222P'),
+                Text(price.toString() + '₽'),
                 Spacer(),
                 Container(
                   padding: EdgeInsets.all(12),

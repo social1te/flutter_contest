@@ -12,19 +12,25 @@ class FavoritesListScreen extends StatelessWidget {
         title: Text('Избранное'),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.filter_list_sharp),),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.filter_list_sharp),
+          ),
         ],
       ),
       body: GridView.builder(
           itemCount: 12,
           primary: false,
           shrinkWrap: true,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2),
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ItemGrid(),
+              child: ItemGrid(
+                name: 'Nike Air Max 270',
+                price: 999,
+              ),
             );
           }),
     );

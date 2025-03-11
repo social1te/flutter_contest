@@ -17,6 +17,7 @@ dependencies:
   build_runner: ^2.4.15
   json_annotation: ^4.9.0
   supabase_flutter: ^2.8.4
+  dotted_line: ^3.2.3
 
 dev_dependencies:
   flutter_test:

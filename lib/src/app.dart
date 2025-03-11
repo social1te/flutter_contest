@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled3/src/features/%20onboarding/onboarding_screen.dart';
 import 'package:untitled3/src/features/auth/view/authorization_screen.dart';
+import 'package:untitled3/src/features/details/view/details_screen.dart';
 import 'package:untitled3/src/features/main/main_wrapper.dart';
 import 'package:untitled3/src/features/settings/settings_screen.dart';
 
