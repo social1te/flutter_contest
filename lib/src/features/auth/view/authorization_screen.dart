@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled3/main.dart';
 import 'package:untitled3/src/common/widgets/input_widget.dart';
-import 'package:untitled3/src/common/widgets/primary_elevated_button.dart';
 import 'package:untitled3/src/config/styles/colors.dart';
 
 class AuthorizationScreen extends StatefulWidget {
@@ -14,14 +13,6 @@ class AuthorizationScreen extends StatefulWidget {
 class _AuthorizationScreenState extends State<AuthorizationScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
-  void _handleSubmit() {
-    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-        MaterialPageRoute(
-          builder: (context)=> MyHomePage(title: '')
-        );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +66,7 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                     style: TextStyle(
                         fontSize: 12, color: AppColors.auroMetalSaurus),
                   ),
-                  onPressed: () {},
+                  onPressed: ()=> Navigator.of(context).pushNamed('/forgot'),
                 ),
               ],
             ),
@@ -100,7 +91,7 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                   ),
                 ),
               ],
-            ),
+            ), 
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -119,7 +110,7 @@ class _AuthorizationScreenState extends State<AuthorizationScreen> {
                     'Создать аккаунт',
                     style: TextStyle(fontSize: 16, color: Colors.black),
                   ),
-                  onPressed: () {},
+                  onPressed: ()=> Navigator.of(context).pushNamed('/reg'),
                 ),
               ],
             )

@@ -125,7 +125,7 @@ class DetailsScreen extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(14),
-                      child: Text('Войти'),
+                      child: Text('В корзину'),
                     ),
                   ),
                 ),

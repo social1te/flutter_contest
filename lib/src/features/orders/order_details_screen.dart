@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:untitled3/src/config/styles/colors.dart';
+import 'package:untitled3/src/features/cart/widgets/cart_widget.dart';
+import 'package:untitled3/src/features/orders/widgets/order_widget.dart';
 
-class PurchasingScreen extends StatelessWidget {
-  const PurchasingScreen({super.key});
+class OrderDetailsScreen extends StatelessWidget {
+  const OrderDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,16 +12,23 @@ class PurchasingScreen extends StatelessWidget {
       backgroundColor: AppColors.cultured,
       appBar: AppBar(
         backgroundColor: AppColors.cultured,
-        title: Text('Корзина'),
         centerTitle: true,
+        title: Text('Заказ № 12313433'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            SizedBox(
-              height: 30,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('7 мин назад')
+              ],
             ),
+            CartWidget(),
+            SizedBox(height: 12),
+            CartWidget(),
+            SizedBox(height: 12),
             Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -47,7 +56,7 @@ class PurchasingScreen extends StatelessWidget {
                     ListTile(
                       contentPadding: EdgeInsets.symmetric(horizontal: 0),
                       leading: Icon(Icons.phone),
-                      title: Text('+7(565)334-23-23'),
+                      title: Text('+7(123)456-78-09'),
                       subtitle: Text('Телефон'),
                       trailing: Icon(Icons.edit_outlined),
                     ),
@@ -105,67 +114,6 @@ class PurchasingScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Spacer(),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        title: Column(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: AppColors.pictonBlue,
-                              foregroundColor: Colors.white,
-                              child: Icon(Icons.check),
-                            ),
-                            SizedBox(height: 25),
-                            Text(
-                              'Вы успешно оформили заказ',
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                            SizedBox(height: 32),
-                            ElevatedButton(
-                              onPressed: () =>
-                                  Navigator.of(context).pushNamed('/main'),
-                              style: ElevatedButton.styleFrom(
-                                elevation: 0,
-                                foregroundColor: Colors.white,
-                                backgroundColor: AppColors.pictonBlue,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14),
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(14),
-                                child: Text('Вернуться к покупкам'),
-                              ),
-                            )
-                          ],
-                        ),
-                        backgroundColor: Colors.white,
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      foregroundColor: Colors.white,
-                      backgroundColor: AppColors.pictonBlue,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(14),
-                      child: Text('Подтвердить'),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
           ],
         ),
       ),

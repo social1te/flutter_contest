@@ -3,6 +3,9 @@ import 'package:untitled3/src/config/styles/colors.dart';
 import 'package:untitled3/src/features/cart/cart_screen.dart';
 import 'package:untitled3/src/features/favorites/favorites_list_screen.dart';
 import 'package:untitled3/src/features/home/home_screen.dart';
+import 'package:untitled3/src/features/notifications/notifications_screen.dart';
+import 'package:untitled3/src/features/notifications/widgets/notification_widget.dart';
+import 'package:untitled3/src/features/profile/profile_screen.dart';
 
 class MainWrapper extends StatefulWidget {
   const MainWrapper({super.key});
@@ -24,12 +27,8 @@ class _MainWrapperState extends State<MainWrapper> {
     HomeScreen(),
     FavoritesListScreen(),
     CartScreen(),
-    Placeholder(
-      color: Colors.yellow,
-    ),
-    Placeholder(
-      color: Colors.pink,
-    ),
+    NotificationsScreen(),
+    ProfileScreen(),
   ];
 
   @override

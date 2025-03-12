@@ -123,34 +123,24 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             SizedBox(height: 12),
-            FutureBuilder<List<ProductResponse>>(
-              future: productsDataSource.getProducts(apiKey: apiKey),
-              builder: (context, snapshot) {
-                if (snapshot.error != null || snapshot.stackTrace != null) {
-                  print(snapshot.error);
-                  return Text('${snapshot.error}');
-                }
-                if (snapshot.hasData ||
-                    snapshot.connectionState == ConnectionState.done) {
-                  return GridView.builder(
-                      itemCount: snapshot.data!.length,
-                      primary: false,
-                      shrinkWrap: true,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2),
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ItemGrid(
-                            name: snapshot.data![index].name,
-                            price: snapshot.data![index].price.toInt(),
-                          ),
-                        );
-                      });
-                }
-                return CircularProgressIndicator();
-              },
-            )
+            GridView.builder(
+                itemCount: 6,
+                primary: false,
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: ()=> Navigator.of(context).pushNamed('/details'),
+                      child: ItemGrid(
+                        name: 'Air Max 270',
+                        price: 999,
+                      ),
+                    ),
+                  );
+                })
           ],
         ),
       ),
