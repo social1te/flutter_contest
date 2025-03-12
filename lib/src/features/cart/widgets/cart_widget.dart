@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CartWidget extends StatefulWidget {
+class CartWidget extends StatelessWidget {
   const CartWidget({super.key});
 
   @override
-  State<CartWidget> createState() => _CartWidgetState();
-}
-
-class _CartWidgetState extends State<CartWidget> {
-  @override
   Widget build(BuildContext context) {
-    int quantity = 1;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Container(
@@ -47,17 +41,6 @@ class _CartWidgetState extends State<CartWidget> {
                 ),
               ],
             ),
-            Column(
-              children: [
-                Row(
-                  children: [
-                    Row(
-
-                    )
-                  ],
-                ),
-              ],
-            )
           ],
         ),
       ),

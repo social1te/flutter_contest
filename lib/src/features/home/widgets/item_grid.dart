@@ -27,8 +27,13 @@ class ItemGrid extends StatelessWidget {
                 Container(
                   height: 100,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: AppColors.cultured),
+                    borderRadius: BorderRadius.circular(15),
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'images/onboarding_second.png',
+                      ),
+                    ),
+                  ),
                 ),
                 Positioned(
                   top: 5,
